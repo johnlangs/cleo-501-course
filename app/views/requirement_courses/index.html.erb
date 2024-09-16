@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Requirement courses" %>
+
+<h1>Requirement courses</h1>
+
+<div id="requirement_courses">
+  <% @requirement_courses.each do |requirement_course| %>
+    <%= render requirement_course %>
+    <p>
+      <%= link_to "Show this requirement course", requirement_course %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New requirement course", new_requirement_course_path %>

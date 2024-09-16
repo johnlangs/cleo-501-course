@@ -6,4 +6,7 @@ class Course < ApplicationRecord
 
   has_many :inverse_course_prerequisites, class_name: 'CoursePrerequisite', foreign_key: :prerequisite_id, dependent: :destroy
   has_many :dependent_courses, through: :inverse_course_prerequisites, source: :course
+
+  has_many :requirement_courses
+  has_many :requirements, through: :requirement_courses
 end
