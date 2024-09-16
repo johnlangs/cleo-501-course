@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Course prerequisites" %>
+
+<h1>Course prerequisites</h1>
+
+<div id="course_prerequisites">
+  <% @course_prerequisites.each do |course_prerequisite| %>
+    <%= render course_prerequisite %>
+    <p>
+      <%= link_to "Show this course prerequisite", course_prerequisite %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New course prerequisite", new_course_prerequisite_path %>

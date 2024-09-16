@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :course_prerequisites
   resources :courses
   resources :subjects
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
