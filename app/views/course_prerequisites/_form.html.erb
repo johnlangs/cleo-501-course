@@ -13,12 +13,12 @@
 
   <div>
     <%= form.label :course_id, style: "display: block" %>
-    <%= form.text_field :course_id %>
+    <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Course' %>
   </div>
 
   <div>
     <%= form.label :prerequisite_id, style: "display: block" %>
-    <%= form.text_field :prerequisite_id %>
+    <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Prerequisite Course' %>
   </div>
 
   <div>

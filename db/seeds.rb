@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+subject1 = Subject.create(name: 'Computer Science', code: 'CSCE')
+
+# Create some courses
+course1 = Course.create(name: 'Intro To Programming I', code: '101', credits: 4, subject_id: '1')
+course2 = Course.create(name: 'Intro To Programming II', code: '102', credits: 3, subject_id: '1')

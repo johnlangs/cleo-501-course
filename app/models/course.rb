@@ -9,4 +9,7 @@ class Course < ApplicationRecord
 
   has_many :requirement_courses
   has_many :requirements, through: :requirement_courses
+
+
+  validates :name, :subject_id, :code, :credits, presence: true
 end

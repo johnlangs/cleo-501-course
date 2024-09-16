@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :degree_plan_id, style: "display: block" %>
-    <%= form.text_field :degree_plan_id %>
+    <%= form.select :degree_plan_id, options_from_collection_for_select(DegreePlan.all, :id, :name), prompt: 'Select a degree plan' %>
   </div>
 
   <div>

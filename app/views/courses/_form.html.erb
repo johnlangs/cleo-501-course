@@ -17,8 +17,18 @@
   </div>
 
   <div>
+    <%= form.label :code, style: "display: block" %>
+    <%= form.number_field :code %>
+  </div>
+
+  <div>
     <%= form.label :subject_id, style: "display: block" %>
-    <%= form.text_field :subject_id %>
+    <%= form.select :subject_id, options_from_collection_for_select(Subject.all, :id, :name), prompt: 'Select a subject' %>
+  </div>
+
+ <div>
+    <%= form.label :credits, style: "display: block" %>
+    <%= form.number_field :credits %>
   </div>
 
   <div>
