@@ -1,0 +1,12 @@
+<% content_for :title, "Editing user plan course" %>
+
+<h1>Editing user plan course</h1>
+
+<%= render "form", user_plan_course: @user_plan_course %>
+
+<br>
+
+<div>
+  <%= link_to "Show this user plan course", @user_plan_course %> |
+  <%= link_to "Back to user plan courses", user_plan_courses_path %>
+</div>

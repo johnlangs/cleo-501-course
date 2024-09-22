@@ -8,9 +8,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-UserInterest.create(interest: 'science')
-UserInterest.create(interest: 'math')
-UserInterest.create(interest: 'art')
+# UserInterest.create(interest: 'science')
+# UserInterest.create(interest: 'math')
+# UserInterest.create(interest: 'art')
 
 User.create(email: 'student@tamu.edu', password: '12345', isAdmin: false)
 User.create(email: 'admin@tamu.edu', password: 'adminPass', isAdmin: true)

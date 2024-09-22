@@ -1,0 +1,2 @@
+class UserPlanCourse < ApplicationRecord
+end
