@@ -6,7 +6,14 @@
 
   <p>
     <strong>Degree plan:</strong>
-    <%= requirement.degree_plan_id %>
+    <%= requirement.degree_plan.name %>
   </p>
 
+  <p>
+  <strong>Courses:</strong>
+    <% requirement.courses.each do |course| %>
+      <br/>
+      <%= link_to course.name, course %>
+    <% end %>
+  </p>
 </div>

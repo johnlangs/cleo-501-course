@@ -1,12 +1,12 @@
 <div id="<%= dom_id requirement_course %>">
   <p>
     <strong>Requirement:</strong>
-    <%= requirement_course.requirement_id %>
+    <%= link_to requirement_course.requirement.name, requirement_course.requirement %>
   </p>
 
   <p>
     <strong>Course:</strong>
-    <%= requirement_course.course_id %>
+    <%= link_to requirement_course.course.name, requirement_course.course %>
   </p>
 
 </div>

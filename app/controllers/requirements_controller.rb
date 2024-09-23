@@ -3,7 +3,7 @@ class RequirementsController < ApplicationController
 
   # GET /requirements or /requirements.json
   def index
-    @requirements = Requirement.all
+    @requirements = Requirement.includes(:degree_plan, :courses)
   end
 
   # GET /requirements/1 or /requirements/1.json
@@ -60,7 +60,7 @@ class RequirementsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_requirement
-      @requirement = Requirement.find(params[:id])
+      @requirement = Requirement.includes(:degree_plan, :courses).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

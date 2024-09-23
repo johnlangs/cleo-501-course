@@ -3,7 +3,7 @@ class RequirementCoursesController < ApplicationController
 
   # GET /requirement_courses or /requirement_courses.json
   def index
-    @requirement_courses = RequirementCourse.all
+    @requirement_courses = RequirementCourse.includes(:requirement, :course).all
   end
 
   # GET /requirement_courses/1 or /requirement_courses/1.json
@@ -60,7 +60,7 @@ class RequirementCoursesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_requirement_course
-      @requirement_course = RequirementCourse.find(params[:id])
+      @requirement_course = RequirementCourse.includes(:requirement, :course).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

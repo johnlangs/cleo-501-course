@@ -5,12 +5,36 @@
 <h1>Course prerequisites</h1>
 
 <div id="course_prerequisites">
-  <% @course_prerequisites.each do |course_prerequisite| %>
-    <%= render course_prerequisite %>
-    <p>
-      <%= link_to "Show this course prerequisite", course_prerequisite %>
-    </p>
-  <% end %>
+  <table>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Course
+      </th>
+      <th>
+        Prerequisite
+      </th>
+    </tr>
+
+    <% @course_prerequisites.each do |course_prerequisite| %>
+      <tr>
+        <td>
+          <%= link_to course_prerequisite.id, course_prerequisite %>
+        </td>
+
+        <td>
+          <%= link_to course_prerequisite.course.name, course_prerequisite.course %>
+        </td>
+
+        <td>
+          <%= link_to course_prerequisite.prerequisite.name, course_prerequisite.prerequisite %>
+        </td>
+      </tr>
+    <% end %>
+
+  </table>
 </div>
 
 <%= link_to "New course prerequisite", new_course_prerequisite_path %>

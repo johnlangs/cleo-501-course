@@ -3,7 +3,7 @@ class CoursePrerequisitesController < ApplicationController
 
   # GET /course_prerequisites or /course_prerequisites.json
   def index
-    @course_prerequisites = CoursePrerequisite.all
+    @course_prerequisites = CoursePrerequisite.includes(:course).all
   end
 
   # GET /course_prerequisites/1 or /course_prerequisites/1.json
@@ -60,7 +60,7 @@ class CoursePrerequisitesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course_prerequisite
-      @course_prerequisite = CoursePrerequisite.find(params[:id])
+      @course_prerequisite = CoursePrerequisite.includes(:course).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :prerequisite_id, style: "display: block" %>
-    <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Prerequisite Course' %>
+    <%= form.select :prerequisite_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Prerequisite Course' %>
   </div>
 
   <div>
