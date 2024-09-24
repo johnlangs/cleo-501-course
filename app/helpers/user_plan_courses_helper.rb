@@ -1,0 +1,2 @@
+module UserPlanCoursesHelper
+end

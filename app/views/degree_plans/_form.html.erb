@@ -1,0 +1,22 @@
+<%= form_with(model: degree_plan) do |form| %>
+  <% if degree_plan.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(degree_plan.errors.count, "error") %> prohibited this degree_plan from being saved:</h2>
+
+      <ul>
+        <% degree_plan.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
