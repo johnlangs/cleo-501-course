@@ -1,0 +1,21 @@
+<div id="<%= dom_id requirement %>">
+  <p>
+    <strong>Name:</strong>
+    <%= requirement.name %>
+  </p>
+
+  <p>
+    <strong>Degree plan:</strong>
+    <%= requirement.degree_plan.name %>
+  </p>
+
+  <p>
+  <strong>Courses:</strong>
+    <% requirement.courses.each do |course| %>
+      <br/>
+      <%= link_to course.name, course %>
+    <% end %>
+  </p>
+  <p>
+  <%= link_to 'Add course to requirement', new_requirement_course_path %>
+</div>

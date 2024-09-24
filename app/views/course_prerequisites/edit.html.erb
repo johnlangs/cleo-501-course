@@ -1,0 +1,12 @@
+<% content_for :title, "Editing course prerequisite" %>
+
+<h1>Editing course prerequisite</h1>
+
+<%= render "form", course_prerequisite: @course_prerequisite %>
+
+<br>
+
+<div>
+  <%= link_to "Show this course prerequisite", @course_prerequisite %> |
+  <%= link_to "Back to course prerequisites", course_prerequisites_path %>
+</div>

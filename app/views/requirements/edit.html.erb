@@ -1,0 +1,12 @@
+<% content_for :title, "Editing requirement" %>
+
+<h1>Editing requirement</h1>
+
+<%= render "form", requirement: @requirement %>
+
+<br>
+
+<div>
+  <%= link_to "Show this requirement", @requirement %> |
+  <%= link_to "Back to requirements", requirements_path %>
+</div>
