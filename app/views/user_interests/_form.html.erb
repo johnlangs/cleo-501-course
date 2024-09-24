@@ -1,0 +1,22 @@
+<%= form_with(model: user_interest) do |form| %>
+  <% if user_interest.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user_interest.errors.count, "error") %> prohibited this user_interest from being saved:</h2>
+
+      <ul>
+        <% user_interest.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :interest, style: "display: block" %>
+    <%= form.text_field :interest %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

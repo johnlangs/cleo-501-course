@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "User plan courses" %>
+
+<h1>User plan courses</h1>
+
+<div id="user_plan_courses">
+  <% @user_plan_courses.each do |user_plan_course| %>
+    <%= render user_plan_course %>
+    <p>
+      <%= link_to "Show this user plan course", user_plan_course %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user plan course", new_user_plan_course_path %>

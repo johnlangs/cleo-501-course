@@ -38,3 +38,10 @@ requirement2 = Requirement.create(degree_plan: degree_plan1, name: 'Engineering 
 
 requirement_course1 = RequirementCourse.create(requirement: requirement1, course: course4)
 requirement_course2 = RequirementCourse.create(requirement: requirement2, course: course5)
+
+# UserInterest.create(interest: 'science')
+# UserInterest.create(interest: 'math')
+# UserInterest.create(interest: 'art')
+
+User.create(email: 'student@tamu.edu', password: '12345', isAdmin: false)
+User.create(email: 'admin@tamu.edu', password: 'adminPass', isAdmin: true)
