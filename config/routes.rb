@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  resources :requirement_courses
+  resources :requirements
+  resources :degree_plans
+  resources :course_prerequisites
+  resources :courses
+  resources :subjects
   resources :users
   resources :passwords
   resources :emails
-
   resources :user_interests
 
   # root 'users#index'

@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p> <% content_for :title, "Courses" %>
+
+<h1>Courses</h1>
+
+<div id="courses">
+  <table>
+
+    <tr>
+      <td> Id </td>
+      <td> Name </td>
+      <td> Subject </td>
+      <td> Credits </td>
+    </tr>
+
+    <% @courses.each do |course| %>
+      <tr>
+        <td>
+          <%= course.id %>
+        </td>
+        <td>
+          <%= link_to course.name, course %>
+        </td>
+        <td>
+          <%= link_to course.subject.name, course.subject %>
+        </td>
+        <td>
+          <%= course.credits %>
+        </td>
+      </tr>
+    <% end %>
+
+  </table>
+</div>
+
+<%= link_to "New course", new_course_path %>

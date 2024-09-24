@@ -1,0 +1,19 @@
+<div id="<%= dom_id subject %>">
+  <p>
+    <strong>ID:</strong>
+    <%= subject.id %>
+  </p>
+  <p>
+    <strong>Name:</strong>
+    <%= subject.name %>
+  </p>
+  <p>
+    <strong>Code:</strong>
+    <%= subject.code %>
+  </p>
+  <strong>Courses:</strong>
+    <% subject.courses.each do |course| %>
+      <br/>
+      <%= link_to course.name, course %>
+    <% end %>
+</div>

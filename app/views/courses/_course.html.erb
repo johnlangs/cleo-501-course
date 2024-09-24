@@ -1,0 +1,31 @@
+<div id="<%= dom_id course %>">
+  <p>
+    <strong>Name:</strong>
+    <%= course.name %>
+  </p>
+
+  <p>
+    <strong>Subject:</strong>
+    <%= course.subject.code %>
+  </p>
+
+  <p>
+    <strong>Code:</strong>
+    <%= course.code %>
+  </p>
+
+  <p>
+    <strong>Credits:</strong>
+    <%= course.credits %>
+  </p>
+
+
+  <p>
+  <strong>Prerequisites:</strong>
+    <% @course.prerequisites.each do |prereq| %>
+      <br/>
+      <%= link_to prereq.name, prereq %>
+    <% end %>
+  </p>
+
+</div>

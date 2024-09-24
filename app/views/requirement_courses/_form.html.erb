@@ -1,0 +1,27 @@
+<%= form_with(model: requirement_course) do |form| %>
+  <% if requirement_course.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(requirement_course.errors.count, "error") %> prohibited this requirement_course from being saved:</h2>
+
+      <ul>
+        <% requirement_course.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :requirement_id, style: "display: block" %>
+    <%= form.select :requirement_id, options_from_collection_for_select(Requirement.all, :id, :name), prompt: 'Select a Requirement' %> 
+  </div>
+
+  <div>
+    <%= form.label :course_id, style: "display: block" %>
+      <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Course' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
