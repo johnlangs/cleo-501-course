@@ -60,7 +60,7 @@ class DegreePlansController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_degree_plan
-      @degree_plan = DegreePlan.find(params[:id])
+      @degree_plan = DegreePlan.includes(:requirements).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
