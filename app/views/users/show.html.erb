@@ -8,5 +8,5 @@
 
   <%= link_to "User interests", user_interests_path %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <%= button_to "Destroy this user", @user, method: :delete, data: {confirm: "Are you sure?"} %>
 </div>
