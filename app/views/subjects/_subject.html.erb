@@ -11,5 +11,9 @@
     <strong>Code:</strong>
     <%= subject.code %>
   </p>
-
+  <strong>Courses:</strong>
+    <% subject.courses.each do |course| %>
+      <br/>
+      <%= link_to course.name, course %>
+    <% end %>
 </div>

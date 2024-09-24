@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects or /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.includes(:courses).all
   end
 
   # GET /subjects/1 or /subjects/1.json
@@ -60,7 +60,7 @@ class SubjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subject
-      @subject = Subject.find(params[:id])
+      @subject = Subject.includes(:courses).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
