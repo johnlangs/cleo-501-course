@@ -1,0 +1,27 @@
+<%= form_with(model: course_prerequisite) do |form| %>
+  <% if course_prerequisite.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(course_prerequisite.errors.count, "error") %> prohibited this course_prerequisite from being saved:</h2>
+
+      <ul>
+        <% course_prerequisite.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :course_id, style: "display: block" %>
+    <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Course' %>
+  </div>
+
+  <div>
+    <%= form.label :prerequisite_id, style: "display: block" %>
+    <%= form.select :prerequisite_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a Prerequisite Course' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

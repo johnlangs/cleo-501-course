@@ -1,0 +1,2 @@
+module DegreePlansHelper
+end
