@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :passwords
   resources :emails
   resources :user_interests
+  resources :majors
+
 
   # root 'users#index'
 
