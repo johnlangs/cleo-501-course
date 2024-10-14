@@ -1,0 +1,19 @@
+<h1>Create Your Profile</h1>
+
+<%= form_for @user, url: update_profile_user_path(@user), method: :patch do |f| %>
+  <div class="field">
+    <%= f.label :name, "Name" %><br>
+    <%= f.text_field :name, disabled: true, value: @user.full_name %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "Email" %><br>
+    <%= f.text_field :email, disabled: true, value: @user.email %>
+  </div>
+  <div class="field">
+    <%= f.label :major, "Major" %><br>
+    <%= f.select :major, @majors, { include_blank: 'Select a Major' }, { required: true } %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create Profile" %>
+  </div>
+<% end %>

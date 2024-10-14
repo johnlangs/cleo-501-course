@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create_profile, :update_profile]
+
 
   # GET /users or /users.json
   def index
@@ -57,6 +59,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def create_profile
+    @user = current_user
+    @majors = ['Computer Science', 'Computer Engineering']
+
+  end
+
+  def update_profile
+    @user = current_user
+    if @user.update(user_params_creation)
+      redirect_to root_path, notice: 'Profile updated successfully.'
+    else
+      render :create_profile
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -66,5 +83,9 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:email, :password, :isAdmin)
+    end
+
+    def user_params_creation
+      params.require(:user).permit(:major)
     end
 end
