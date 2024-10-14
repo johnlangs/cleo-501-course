@@ -4,4 +4,5 @@
 <p> <%= link_to "Subjects", subjects_path %> </p>
 <p> <%= link_to "Requirements", requirements_path %> </p>
 <p> <%= link_to "Requirement Courses", requirement_courses_path %> </p>
-<p> <%= link_to "Sign Out", destroy_admin_session_path %> </p>
+<p> <%= link_to "Sign In", new_user_session_path %> </p>
+<p> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </p>
