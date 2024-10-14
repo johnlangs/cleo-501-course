@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create_profile, :update_profile]
+  before_action :authenticate_user!
 
 
   # GET /users or /users.json
@@ -38,14 +38,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to user_profile_path, notice: "Profile updated successfully."
+    else
+      render :edit
     end
   end
 
@@ -77,14 +73,15 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = current_user
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :password, :isAdmin)
+      params.require(:user).permit(:email, :full_name, :major)
     end
 
+    # only allow major to change in during user creation
     def user_params_creation
       params.require(:user).permit(:major)
     end

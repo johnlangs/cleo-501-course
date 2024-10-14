@@ -1,10 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<p><strong>Name:</strong> <%= @user.full_name %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Major:</strong> <%= @user.major %></p>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <%= link_to "Edit this user", edit_user_profile_path %> |
 
   <%= link_to "User interests", user_interests_path %>
 

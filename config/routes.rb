@@ -21,10 +21,7 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
-  # root "posts#index"
 
-  root "dashboards#show"
   devise_for :users, controllers: { 
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
@@ -33,10 +30,17 @@ Rails.application.routes.draw do
     get 'users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :user do
+  resources :users, except: [:show, :edit] do
     member do
-      get :create_profile, to: 'users#create_profile'
-      patch :update_profile, to: 'users#update_profile'
+      get :create_profile
+      patch :update_profile
     end
   end
+
+  # Custom route for the currently logged-in user's profile
+  get 'user/profile', to: 'users#show', as: 'user_profile'
+  get 'user/profile/edit', to: 'users#edit', as: 'edit_user_profile'
+  patch 'user/profile', to: 'users#update'
+
+  root "dashboards#show"
 end
