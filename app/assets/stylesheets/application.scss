@@ -1,0 +1,87 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+:root {
+   --primary-color: #1976D2;
+   --secondary-color: #FFC107;
+   --background-color: #FAFAFA;
+   --error-color: #D32F2F;
+   --inactive-icon-color: #757575;
+}
+
+.navbar {
+  background-color: var(--primary-color) !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white !important; /* Or use var(--primary-color) if you want */
+}
+
+body {
+   font-family: 'Roboto', sans-serif;
+   background-color: var(--background-color);
+}
+
+p, body {
+   font-size: 0.875rem;
+}
+
+.caption {
+   font-size: 0.75rem;
+}
+
+.backHome {
+   position: absolute;
+   top: 0;
+   right: 0;
+   margin: 1rem;
+}
+
+button {
+   border-radius: 0.25rem;
+   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.24);
+   background-color: var(--primary-color);
+   color: white;
+   padding: 0.5rem 1rem;
+   border: none;
+   transition: all 0.3s ease;
+}
+button:hover {
+   background-color: #005DB9; /* primary color darkened by 10% */
+}
+
+ i {
+   size: 1.5rem;
+   color: #1976D2;
+ }
+
+ h1, h2, h3, h4, h5, h6 {
+   font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+   .container {
+       grid-template-columns: repeat(6, 1fr);
+   }
+}
+
+@media (max-width: 480px) {
+   .container {
+       grid-template-columns: repeat(2, 1fr);
+   }
+}

@@ -14,13 +14,13 @@
             <h6 class="card-subtitle mb-2 text-muted"><%= upc.course.subject.code %> <%=upc.course.code%></h6>
             <p class="card-text"><%= upc.course.credits %> credit hours</p>
           </div>
-        </div>
-        <div>
-          <%= button_to "Destroy this course prerequisite", upc, method: :delete %>
+          <div>
+            <%= button_to "Delete this Planned Course", upc, method: :delete %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
 
-<%= link_to "New user plan course", new_user_plan_course_path %>
+<%= link_to "New user plan course", new_user_plan_course_user_path %>

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_16_003038) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_15_000205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "full_name"
+    t.string "uid"
+    t.string "avatar_url"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+  end
 
   create_table "course_prerequisites", force: :cascade do |t|
     t.bigint "course_id", null: false
@@ -35,15 +45,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_003038) do
 
   create_table "degree_plans", force: :cascade do |t|
     t.string "name"
-  end
-
-  create_table "user_interests", force: :cascade do |t|
-    t.string "interest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_plan_courses", force: :cascade do |t|
+  create_table "majors", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,34 +79,39 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_003038) do
     t.string "code"
   end
 
+  create_table "user_interests", force: :cascade do |t|
+    t.string "interest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_plan_courses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.index ["course_id"], name: "index_user_plan_courses_on_course_id"
+    t.index ["user_id"], name: "index_user_plan_courses_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.boolean "isAdmin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "uid"
+    t.string "provider"
+    t.string "full_name"
+    t.string "encrypted_password"
+    t.string "major"
+  end
+
   add_foreign_key "course_prerequisites", "courses"
   add_foreign_key "course_prerequisites", "courses", column: "prerequisite_id"
   add_foreign_key "courses", "subjects"
   add_foreign_key "requirement_courses", "courses"
   add_foreign_key "requirement_courses", "requirements"
   add_foreign_key "requirements", "degree_plans"
-  
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.boolean "isAdmin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "majors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "admins", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "full_name"
-    t.string "uid"
-    t.string "avatar_url"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-  end
+  add_foreign_key "user_plan_courses", "courses"
+  add_foreign_key "user_plan_courses", "users"
 end
