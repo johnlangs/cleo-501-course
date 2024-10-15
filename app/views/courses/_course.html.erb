@@ -1,4 +1,18 @@
 <div id="<%= dom_id course %>">
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%=course.name%></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%=course.subject.code%></h6>
+    <p class="card-text">Credits: <%=course.credits %></p>
+    <strong>Prerequisites:</strong>
+    <% @course.prerequisites.each do |prereq| %>
+      <br/>
+      <%= link_to prereq.name, prereq %>
+    <% end %>
+  </div>
+</div>
+
   <p>
     <strong>Name:</strong>
     <%= course.name %>
