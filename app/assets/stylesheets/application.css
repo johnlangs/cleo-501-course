@@ -93,8 +93,9 @@ button:hover {
 
 .links a {
    color: white;
+   text-decoration: none;
    background-color: #1976D2; /* Primary color */
-   padding: 0.1rem 1.5rem;
+   padding: 0.5rem 1.0rem;
    border-radius: 0.5rem;
    transition: background-color 0.3s ease;
    font-size: 1rem;
