@@ -7,10 +7,12 @@
         <p> <%= link_to "Subjects", subjects_path %> </p>
         <p> <%= link_to "Requirements", requirements_path %> </p>
         <p> <%= link_to "Requirement Courses", requirement_courses_path %> </p>
-<p> 
-    <% if user_signed_in? %>
-        <%= link_to 'User Profile', user_profile_path %>
-    <% end %>
-</p>
-<p> <%= link_to "Sign In", new_user_session_path %> </p>
-<p> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </p>
+        <p> 
+            <% if user_signed_in? %>
+                <%= link_to 'User Profile', user_profile_path %>
+            <% end %>
+        </p>
+        <p> <%= link_to "Sign In", new_user_session_path %> </p>
+        <p> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </p>
+    </div>
+</div>
