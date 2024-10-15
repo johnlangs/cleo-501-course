@@ -1,12 +1,11 @@
-<% content_for :title, "Editing user" %>
+<h1>Edit Profile</h1>
 
-<h1>Editing user</h1>
-
-<%= render "form", user: @user %>
-
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
-</div>
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label :major, "Major" %>
+    <%= f.select :major, ['Computer Science', 'Computer Engineering'], include_blank: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Profile" %>
+  </div>
+<% end %>
