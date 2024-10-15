@@ -86,14 +86,14 @@ button:hover {
    text-align: center;
 }
 
-.links p {
+/* .links p {
    display: grid;
    flex-direction: column;
    gap: 0.5rem;
    justify-content: center;
    align-items: center;
    text-align: center;
-}
+} */
 
 .links a {
    color: white;
@@ -143,9 +143,25 @@ button:hover {
    justify-content: center;
 }
 
-/* table styling */
 
-/* Table styling with primary, secondary, and background colors */
+#subjects {
+   margin-bottom: 2rem;
+}
+
+#subjects p {
+   margin-bottom: 1rem;
+}
+
+#subjects a {
+   color: #1976D2; /* Primary color for links */
+   text-decoration: none;
+}
+
+#subjects a:hover {
+   text-decoration: underline;
+}
+
+/* table styling */
 .table-container {
    width: 100%;
    padding: 1rem;
@@ -158,9 +174,14 @@ table {
    border-collapse: collapse;
    background-color: var(--background-color, #FAFAFA); /* Background color for table */
    font-family: 'Roboto', sans-serif;
+   margin: 0.5rem;
 }
 
-th, td {
+table a {
+   color: var(--primary-color);
+}
+
+tr, td {
    padding: 0.75rem;
    text-align: left;
    border-bottom: 1px solid var(--secondary-color, #FFC107); /* Use secondary color for table borders */
@@ -181,10 +202,10 @@ tr:nth-child(even) td {
    background-color: #f1f1f1; /* Slightly darker background for alternate rows */
 }
 
-tr:hover td {
-   background-color: var(--secondary-color, #FFC107); /* Secondary color for row hover effect */
+/* tr:hover td {
+   background-color: var(--secondary-color, #FFC107); 
    color: black;
-}
+} */
 
 .caption {
    font-size: 0.75rem;
@@ -193,3 +214,7 @@ tr:hover td {
    margin-bottom: 1rem;
 }
 
+.delete {
+   margin-top: 0.5rem;
+   background-color:#D32F2F
+}
