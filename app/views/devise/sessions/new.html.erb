@@ -6,12 +6,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: 'Roboto';
       background-color: #FAFAFA;
       font-size: 0.875rem;
     }
@@ -54,8 +50,8 @@
 </head>
 <body>
   <div class="login-container">
-    <h1>Login to Course Scheduler</h1>
-    <%= button_to admin_google_oauth2_omniauth_authorize_path, class: "btn-google", method: :post, data: { turbo: "false" } do %>
+    <h1>Login to Cleo Course Scheduler</h1>
+    <%= button_to user_google_oauth2_omniauth_authorize_path, class: "btn-google", method: :post, data: { turbo: "false" } do %>
       <i class="fab fa-google"></i><span>Sign in with Google</span>
     <% end %>
   </div>

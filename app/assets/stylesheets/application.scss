@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
 :root {
    --primary-color: #1976D2;
    --secondary-color: #FFC107;
@@ -20,6 +22,16 @@
    --error-color: #D32F2F;
    --inactive-icon-color: #757575;
 }
+
+.navbar {
+  background-color: var(--primary-color) !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white !important; /* Or use var(--primary-color) if you want */
+}
+
 body {
    font-family: 'Roboto', sans-serif;
    background-color: var(--background-color);
