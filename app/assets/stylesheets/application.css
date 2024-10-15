@@ -118,3 +118,54 @@ button:hover {
    text-align: center;
    align-items: center;
 }
+
+/* table styling */
+
+/* Table styling with primary, secondary, and background colors */
+.table-container {
+   width: 100%;
+   padding: 1rem;
+   background-color: var(--background-color, #FAFAFA); /* Ensure the container uses the background color */
+   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.24); /* Slight shadow for visual depth */
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   background-color: var(--background-color, #FAFAFA); /* Background color for table */
+   font-family: 'Roboto', sans-serif;
+}
+
+th, td {
+   padding: 0.75rem;
+   text-align: left;
+   border-bottom: 1px solid var(--secondary-color, #FFC107); /* Use secondary color for table borders */
+}
+
+th {
+   background-color: var(--primary-color, #1976D2); /* Primary color for table headers */
+   color: white;
+   font-weight: bold;
+}
+
+td {
+   background-color: var(--background-color, #FAFAFA); /* Background color for table cells */
+   color: black;
+}
+
+tr:nth-child(even) td {
+   background-color: #f1f1f1; /* Slightly darker background for alternate rows */
+}
+
+tr:hover td {
+   background-color: var(--secondary-color, #FFC107); /* Secondary color for row hover effect */
+   color: black;
+}
+
+.caption {
+   font-size: 0.75rem;
+   color: var(--primary-color, #1976D2);
+   text-align: left;
+   margin-bottom: 1rem;
+}
+
