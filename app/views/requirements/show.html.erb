@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="assets/stylesheets/application.css">
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @requirement %>
@@ -6,5 +8,5 @@
   <%= link_to "Edit this requirement", edit_requirement_path(@requirement) %> |
   <%= link_to "Back to requirements", requirements_path %>
 
-  <%= button_to "Destroy this requirement", @requirement, method: :delete %>
+  <%= button_to "Destroy this requirement", @requirement, method: :delete, class: "delete" %>
 </div>
