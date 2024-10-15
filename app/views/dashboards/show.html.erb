@@ -1,7 +1,12 @@
-<h1>You're logged in! Welcome to the Dashboard!</h1>
-<p> <%= link_to "Courses", courses_path %> </p>
-<p> <%= link_to "Degree Plans", degree_plans_path %> </p>
-<p> <%= link_to "Subjects", subjects_path %> </p>
-<p> <%= link_to "Requirements", requirements_path %> </p>
-<p> <%= link_to "Requirement Courses", requirement_courses_path %> </p>
-<p> <%= link_to "Sign Out", destroy_admin_session_path %> </p>
+<link rel="stylesheet" href="assets/stylesheets/application.css">
+<div class="container">
+    <h1 class="heading">You're logged in! Welcome to the Dashboard!</h1>
+    <div class="links">
+        <p> <%= link_to "Courses", courses_path %> </p>
+        <p> <%= link_to "Degree Plans", degree_plans_path %> </p>
+        <p> <%= link_to "Subjects", subjects_path %> </p>
+        <p> <%= link_to "Requirements", requirements_path %> </p>
+        <p> <%= link_to "Requirement Courses", requirement_courses_path %> </p>
+        <p class="signout"> <%= link_to "Sign Out", destroy_admin_session_path %> </p>
+    </div>
+</div>
