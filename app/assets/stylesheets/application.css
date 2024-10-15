@@ -29,28 +29,15 @@ p, body {
    font-size: 0.875rem;
 }
 
-a {
+/* a {
    color: black;
    border-radius: 0.5rem;
    font-size: 0.875rem;
    display: block;
-}
+} */
 
 .caption {
    font-size: 0.75rem;
-}
-
-.backHome { /* TO BE FIXED */
-   color: var(--primary-color);
-   display: inline-block;
-   position: absolute;
-   padding: 0.5rem 0.5rem;
-   font-size: 0.75rem; /*  ???   */
-   border-radius: 0.5rem;
-   top: 1rem;
-   right: 1rem;
-   margin: 1rem;
-   z-index: 1000;
 }
 
 .signout {
@@ -105,6 +92,20 @@ button:hover {
 
 .links a:hover {
    background-color: #165a9e; /* Darken primary color by 10% */
+}
+
+
+.backHome { /* TO BE FIXED */
+   color: var(--primary-color);
+   display: inline-block;
+   position: absolute;
+   padding: 0.5rem 0.5rem;
+   font-size: 0.75rem; /*  ???   */
+   border-radius: 0.5rem;
+   top: 1rem;
+   right: 1rem;
+   margin: 1rem;
+   z-index: 1000;
 }
 
 
