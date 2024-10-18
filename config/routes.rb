@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :requirements
   resources :degree_plans
   resources :course_prerequisites
+  resources :user_plan_courses
   resources :courses
   resources :subjects
   resources :passwords
@@ -22,15 +23,15 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
 
-  devise_for :users, controllers: { 
-    omniauth_callbacks: 'users/omniauth_callbacks'
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
   devise_scope :user do
-    get 'users/sign_in', to: 'users/sessions#new', as: :new_user_session
-    get 'users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
+    get "users/sign_in", to: "users/sessions#new", as: :new_user_session
+    get "users/sign_out", to: "users/sessions#destroy", as: :destroy_user_session
   end
 
-  resources :users, except: [:show, :edit] do
+  resources :users, except: [ :show, :edit ] do
     member do
       get :create_profile
       patch :update_profile
@@ -38,9 +39,11 @@ Rails.application.routes.draw do
   end
 
   # Custom route for the currently logged-in user's profile
-  get 'user/profile', to: 'users#show', as: 'user_profile'
-  get 'user/profile/edit', to: 'users#edit', as: 'edit_user_profile'
-  patch 'user/profile', to: 'users#update'
+  get "user/profile", to: "users#show", as: "user_profile"
+  get "user/profile/edit", to: "users#edit", as: "edit_user_profile"
+  get "user/plan", to: "user_plan_courses#user", as: "user_plan"
+  get "user/plan/new", to: "user_plan_courses#user_new", as: "new_user_plan_course_user"
+  patch "user/profile", to: "users#update"
 
   root "dashboards#show"
 end

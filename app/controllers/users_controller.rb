@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
   before_action :authenticate_user!
 
 
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
+
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -57,14 +58,13 @@ class UsersController < ApplicationController
 
   def create_profile
     @user = current_user
-    @majors = ['Computer Science', 'Computer Engineering']
-
+    @majors = [ "Computer Science", "Computer Engineering" ]
   end
 
   def update_profile
     @user = current_user
     if @user.update(user_params_creation)
-      redirect_to root_path, notice: 'Profile updated successfully.'
+      redirect_to root_path, notice: "Profile updated successfully."
     else
       render :create_profile
     end
