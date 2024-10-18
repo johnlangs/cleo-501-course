@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="assets/stylesheets/application.css">
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @user_interest %>
@@ -6,5 +8,5 @@
   <%= link_to "Edit this user interest", edit_user_interest_path(@user_interest) %> |
   <%= link_to "Back to user interests", user_interests_path %>
 
-  <%= button_to "Destroy this user interest", @user_interest, method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= button_to "Destroy this user interest", @user_interest, method: :delete, data: {confirm: "Are you sure?"}, class: "delete" %>
 </div>
