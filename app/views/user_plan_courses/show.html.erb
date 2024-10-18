@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="assets/stylesheets/application.css">
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @user_plan_course %>
@@ -6,5 +8,5 @@
   <%= link_to "Edit this user plan course", edit_user_plan_course_path(@user_plan_course) %> |
   <%= link_to "Back to user plan courses", user_plan_courses_path %>
 
-  <%= button_to "Destroy this user plan course", @user_plan_course, method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= button_to "Destroy this user plan course", @user_plan_course, method: :delete, data: {confirm: "Are you sure?"}, class: "delete" %>
 </div>
