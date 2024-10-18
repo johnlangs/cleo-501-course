@@ -64,7 +64,6 @@ class UsersController < ApplicationController
   def update_profile
     @user = current_user
     if @user.update(user_params_creation)
-      redirect_to root_path, notice: 'Profile updated successfully.'
       redirect_to root_path, notice: "Profile updated successfully."
     else
       render :create_profile
