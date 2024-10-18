@@ -1,10 +1,8 @@
-<link rel="stylesheet" href="assets/stylesheets/application.css">
-
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "User plan courses" %>
 
-<h1 class="heading">User plan courses</h1>
+<h1>User plan courses</h1>
 
 <div id="user_plan_courses">
   <div class="row row-cols-1 row-cols-md-3">
@@ -16,13 +14,13 @@
             <h6 class="card-subtitle mb-2 text-muted"><%= upc.course.subject.code %> <%=upc.course.code%></h6>
             <p class="card-text"><%= upc.course.credits %> credit hours</p>
           </div>
-        </div>
-        <div>
-          <%= button_to "Destroy this course prerequisite", upc, method: :delete %>
+          <div>
+            <%= button_to "Delete this Planned Course", upc, method: :delete %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
 
-<%= link_to "New user plan course", new_user_plan_course_path %>
+<%= link_to "New user plan course", new_user_plan_course_user_path %>

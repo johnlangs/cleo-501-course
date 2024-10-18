@@ -3,7 +3,7 @@ class UserPlanCoursesController < ApplicationController
 
   # GET /user_plan_courses or /user_plan_courses.json
   def index
-    @user_plan_courses = UserPlanCourse.all
+    @user_plan_courses = UserPlanCourse.includes(:course, :user).all
   end
 
   # GET /user_plan_courses/1 or /user_plan_courses/1.json
@@ -19,9 +19,18 @@ class UserPlanCoursesController < ApplicationController
   def edit
   end
 
+  def user
+    @user_plan_courses = UserPlanCourse.includes(:course, :user).where(user_id: current_user.id)
+  end
+
+  # make new user_plan_course with user_id = current_user.id
+  def user_new
+    @user_plan_course = UserPlanCourse.new
+  end
+
   # POST /user_plan_courses or /user_plan_courses.json
   def create
-    @user_plan_course = UserPlanCourse.new(user_plan_course_params)
+    @user_plan_course = UserPlanCourse.new(user_id: current_user.id, course_id: user_plan_course_params[:course_id])
 
     respond_to do |format|
       if @user_plan_course.save
@@ -65,6 +74,6 @@ class UserPlanCoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_plan_course_params
-      params.fetch(:user_plan_course, {})
+      params.fetch(:user_plan_course, {}).permit(:user_id, :course_id)
     end
 end

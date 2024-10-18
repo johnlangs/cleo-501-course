@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.includes(:subject)
+    @courses = Course.includes(:subject).order(:subject_id, :code)
   end
 
   # GET /courses/1 or /courses/1.json

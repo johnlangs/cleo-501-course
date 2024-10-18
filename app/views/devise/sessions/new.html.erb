@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="assets/stylesheets/application.css">
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
       margin: 0;
       font-family: 'Roboto', sans-serif;
@@ -58,7 +55,7 @@
 </head>
 <body>
   <div class="login-container">
-    <h1>Login to Course Scheduler</h1>
+    <h1>Login to Cleo Course Scheduler</h1>
     <%= button_to user_google_oauth2_omniauth_authorize_path, class: "btn-google", method: :post, data: { turbo: "false" } do %>
       <i class="fab fa-google"></i><span>Sign in with Google</span>
     <% end %>
