@@ -2,10 +2,10 @@
 	"stack": "heroku-22",
 	"buildpacks": [
 		{
-			"url": "heroku/rails"
+			"url": "heroku/python"
 		},
 		{
-			"url": "heroku/python"
+			"url": "heroku/rails"
 		}
 	]
 }
