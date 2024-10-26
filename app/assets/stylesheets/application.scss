@@ -67,7 +67,9 @@ button {
    padding: 0.5rem 1rem;
    border: none;
    transition: all 0.3s ease;
+   //width: 5rem;
 }
+
 button:hover {
    background-color: #005DB9; /* primary color darkened by 10% */
 }
@@ -90,22 +92,18 @@ button:hover {
 }
 
 .links {
+   padding-top: 1rem;
    display: flex;
    flex-direction: column;
    gap: 0.5rem;
    justify-content: center;
-   align-items: center;
+   //align-items: center; /* squeezes text */
    text-align: center;
 }
 
-/* .links p {
-   display: grid;
-   flex-direction: column;
-   gap: 0.5rem;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-} */
+ .links p {
+   width: max;
+} 
 
 .links a {
    color: white;
