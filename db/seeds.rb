@@ -156,3 +156,6 @@ degree_plan2 = DegreePlan.create(name: 'BS in Computer Engineering')
 
 User.create(email: 'student@tamu.edu', encrypted_password: '12345', isAdmin: false)
 User.create(email: 'admin@tamu.edu', encrypted_password: 'adminPass', isAdmin: true)
+
+Subject.create(name: "Subject1", code: 1);
+Subject.create(name: "Subject2", code: 12);

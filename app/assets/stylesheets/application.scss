@@ -101,9 +101,9 @@ button:hover {
    text-align: center;
 }
 
- .links p {
-   width: max;
-} 
+//  .links p {
+//    width: max;
+// } 
 
 .links a {
    color: white;
@@ -174,15 +174,16 @@ button:hover {
 /* table styling */
 .table-container {
    width: 100%;
-   padding: 1rem;
-   background-color: var(--background-color, #FAFAFA); /* Ensure the container uses the background color */
-   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.24); /* Slight shadow for visual depth */
+   padding: 0.5rem;
+   background-color: var(--background-color, #FAFAFA);
+   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.24);
 }
 
 table {
-   width: 100%;
+   width:75%;
+   border-radius: 0.5rem;
    border-collapse: collapse;
-   background-color: var(--background-color, #FAFAFA); /* Background color for table */
+   background-color: var(--background-color, #FAFAFA); 
    font-family: 'Roboto', sans-serif;
    margin: 0.5rem;
 }
@@ -194,12 +195,12 @@ table a {
 tr, td {
    padding: 0.75rem;
    text-align: left;
-   border-bottom: 1px solid var(--secondary-color, #FFC107); /* Use secondary color for table borders */
+   border-bottom: 1px solid var(--secondary-color, #FFC107); // table borders
 }
 
 th {
-   background-color: var(--primary-color, #1976D2); /* Primary color for table headers */
-   color: white;
+   background-color: var(--primary-color, #1976D2); 
+   color: var(--secondary-color);
    font-weight: bold;
 }
 
