@@ -5,11 +5,11 @@
 <p><strong>Name:</strong> <%= @user.full_name %></p>
 <p><strong>Email:</strong> <%= @user.email %></p>
 <p><strong>Major:</strong> <%= @user.major %></p>
+<p><strong>Preferred Subject:</strong> <%= @preference || "Not selected" %></p>
+
 
 <div>
-  <%= link_to "Edit this user", edit_user_profile_path %> |
-
-  <%= link_to "User interests", user_interests_path %>
+  <%= link_to "Edit this user", edit_user_profile_path %>
 
   <%= button_to "Destroy this user", @user, method: :delete, data: {confirm: "Are you sure?"}, class: "delete" %>
 </div>
