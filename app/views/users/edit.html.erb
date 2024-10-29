@@ -2,8 +2,12 @@
 
 <%= form_for @user do |f| %>
   <div class="field">
-    <%= f.label :major, "Major" %>
-    <%= f.select :major, ['Computer Science', 'Computer Engineering'], include_blank: true %>
+    <%= f.label :major, "Major" %><br>
+    <%= f.select :major, @majors, { include_blank: 'Select a Major' }, { required: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :preference_id, "Preferred Subject" %><br>
+    <%= f.select :preference_id, @subjects, { include_blank: 'Select a Subject' }, { required: true } %>
   </div>
   <div class="actions">
     <%= f.submit "Update Profile" %>

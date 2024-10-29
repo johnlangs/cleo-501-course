@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @preference = Subject.find(current_user.preference_id).name
   end
 
   # GET /users/new
@@ -19,6 +20,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @majors = [ "Computer Science", "Computer Engineering" ]
+    @subjects = Subject.all.pluck(:name, :id)
   end
 
   # POST /users or /users.json
@@ -59,6 +62,7 @@ class UsersController < ApplicationController
   def create_profile
     @user = current_user
     @majors = [ "Computer Science", "Computer Engineering" ]
+    @subjects = Subject.all.pluck(:name, :id)
   end
 
   def update_profile
@@ -78,11 +82,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :full_name, :major)
+      params.require(:user).permit(:email, :full_name, :major, :preference_id)
     end
 
     # only allow major to change in during user creation
     def user_params_creation
-      params.require(:user).permit(:major)
+      params.require(:user).permit(:major, :preference_id)
     end
 end
