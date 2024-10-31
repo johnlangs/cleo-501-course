@@ -11,5 +11,5 @@
 <div>
   <%= link_to "Edit this user", edit_user_profile_path %>
 
-  <%= button_to "Destroy this user", @user, method: :delete, data: {confirm: "Are you sure?"}, class: "delete" %>
+  <%= button_to "Destroy this user", @user, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete" %>
 </div>
