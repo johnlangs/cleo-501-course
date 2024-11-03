@@ -10,8 +10,8 @@
     <%= f.text_field :email, disabled: true, value: @user.email %>
   </div>
   <div class="field">
-    <%= f.label :major, "Major" %><br>
-    <%= f.select :major, @majors, { include_blank: 'Select a Major' }, { required: true } %>
+    <%= f.label :major_id, "Major" %><br>
+    <%= f.select :major_id, @majors, { include_blank: 'Select a Major' }, { required: true } %>
   </div>
   <div class="field">
     <%= f.label :preference_id, "Preferred Subject" %><br>
