@@ -9,7 +9,7 @@ module Users
         Rails.logger.info "Signed in user with ID: #{user.id}"  # Confirm that user ID is available
         flash[:success] = t("devise.omniauth_callbacks.success", kind: "Google")
 
-        if user.major.blank?
+        if user.major_id.blank?
           redirect_to create_profile_user_path(user)
         else
           redirect_to root_path

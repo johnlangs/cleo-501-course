@@ -4,9 +4,11 @@
 
 <p><strong>Name:</strong> <%= @user.full_name %></p>
 <p><strong>Email:</strong> <%= @user.email %></p>
-<p><strong>Major:</strong> <%= @user.major %></p>
+<p><strong>Major:</strong> <%= @major %></p>
 <p><strong>Preferred Subject:</strong> <%= @preference || "Not selected" %></p>
-
+<p><strong>Max Class Hours:</strong> <%= @user.max_class_hours %></p>
+<p><strong>Graduation Semester:</strong> <%= @user.graduation_semester %></p>
+<p><strong>Graduation Year:</strong> <%= @user.graduation_year %></p>
 
 <div>
   <%= link_to "Edit this user", edit_user_profile_path %>
