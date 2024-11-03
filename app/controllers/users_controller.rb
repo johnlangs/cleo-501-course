@@ -83,11 +83,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :full_name, :major_id, :preference_id)
+      params.require(:user).permit(:email, :full_name, :major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
     end
 
     # only allow major to change in during user creation
     def user_params_creation
-      params.require(:user).permit(:major_id, :preference_id)
+      params.require(:user).permit(:major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
     end
 end
