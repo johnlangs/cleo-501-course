@@ -10,8 +10,24 @@
     <%= f.text_field :email, disabled: true, value: @user.email %>
   </div>
   <div class="field">
-    <%= f.label :major, "Major" %><br>
-    <%= f.select :major, @majors, { include_blank: 'Select a Major' }, { required: true } %>
+    <%= f.label :major_id, "Major" %><br>
+    <%= f.select :major_id, @majors, { include_blank: 'Select a Major' }, { required: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :preference_id, "Preferred Subject" %><br>
+    <%= f.select :preference_id, @subjects, { include_blank: 'Select a Subject' }, { required: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :max_class_hours, "Max Class Hours" %><br>
+    <%= f.select :max_class_hours, (12..24).to_a, { include_blank: 'Select Hours' }, { required: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :graduation_semester, "Graduation Semester" %><br>
+    <%= f.select :graduation_semester, ["Fall", "Spring"], { include_blank: 'Select Semester' }, { required: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :graduation_year, "Graduation Year" %><br>
+    <%= f.select :graduation_year, ((Time.now.year)..(Time.now.year + 5)).to_a, { include_blank: 'Select Year' }, { required: true } %>
   </div>
   <div class="actions">
     <%= f.submit "Create Profile" %>

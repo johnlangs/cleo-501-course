@@ -154,5 +154,11 @@ degree_plan2 = DegreePlan.create(name: 'BS in Computer Engineering')
 # UserInterest.create(interest: 'math')
 # UserInterest.create(interest: 'art')
 
-User.create(email: 'student@tamu.edu', encrypted_password: '12345', isAdmin: false)
-User.create(email: 'admin@tamu.edu', encrypted_password: 'adminPass', isAdmin: true)
+# User.create(email: 'student@tamu.edu', encrypted_password: '12345', isAdmin: false)
+# User.create(email: 'admin@tamu.edu', encrypted_password: 'adminPass', isAdmin: true)
+
+Major.create(name: "Computer Science")
+Major.create(name: "Computer Engineering")
+
+Subject.create(name: "Subject1", code: 1);
+Subject.create(name: "Subject2", code: 12);

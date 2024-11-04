@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_15_000205) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_03_061206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,7 +103,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_000205) do
     t.string "provider"
     t.string "full_name"
     t.string "encrypted_password"
-    t.string "major"
+    t.bigint "preference_id"
+    t.bigint "major_id"
+    t.integer "max_class_hours"
+    t.string "graduation_semester"
+    t.integer "graduation_year"
+    t.index ["major_id"], name: "index_users_on_major_id"
+    t.index ["preference_id"], name: "index_users_on_preference_id"
   end
 
   add_foreign_key "course_prerequisites", "courses"
@@ -114,4 +120,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_000205) do
   add_foreign_key "requirements", "degree_plans"
   add_foreign_key "user_plan_courses", "courses"
   add_foreign_key "user_plan_courses", "users"
+  add_foreign_key "users", "majors"
+  add_foreign_key "users", "subjects", column: "preference_id"
 end
