@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_03_061206) do
     t.bigint "user_id", null: false
     t.bigint "course_id", null: false
     t.boolean "has_taken"
+    t.integer "semester"
     t.index ["course_id"], name: "index_user_plan_courses_on_course_id"
     t.index ["user_id"], name: "index_user_plan_courses_on_user_id"
   end
