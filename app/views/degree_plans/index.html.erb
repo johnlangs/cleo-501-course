@@ -6,6 +6,8 @@
 
 <h1 class="heading">Degree plans</h1>
 
+<%= link_to "New degree plan", new_degree_plan_path, class: "newButton" %>
+
 <div id="degree_plans">
   <% @degree_plans.each do |degree_plan| %>
     <%= render degree_plan %>
@@ -15,4 +17,3 @@
   <% end %>
 </div>
 
-<%= link_to "New degree plan", new_degree_plan_path %>

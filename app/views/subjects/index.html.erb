@@ -4,6 +4,8 @@
 
 <h1 class="heading">Subjects</h1>
 
+<%= link_to "New subject", new_subject_path, class: "newButton" %>
+
 <div id="subjects">
   <% @subjects.each do |subject| %>
     <%= render subject %>
@@ -13,4 +15,3 @@
   <% end %>
 </div>
 
-<%= link_to "New subject", new_subject_path %>

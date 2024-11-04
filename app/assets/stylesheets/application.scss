@@ -70,6 +70,10 @@ button {
    //width: 5rem;
 }
 
+.newButton {
+   margin: 0.5rem;
+}
+
 button:hover {
    background-color: #005DB9; /* primary color darkened by 10% */
 }
@@ -83,7 +87,7 @@ button:hover {
    font-size: 1.5rem;
 }
 .heading {
-   margin-top: 1.5rem;
+   margin-top: 0.5rem;
    grid-column: 1 / -1;
    font-size: 1.5rem;
    text-align: center;

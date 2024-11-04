@@ -4,6 +4,8 @@
 
 <h1>User plan courses</h1>
 
+<%= link_to "New user plan course", new_user_plan_course_user_path, class: "newButton" %>
+
 <div id="user_plan_courses">
   <div class="row row-cols-1 row-cols-md-3">
     <% @user_plan_courses.each do |upc| %>
@@ -23,4 +25,3 @@
   </div>
 </div>
 
-<%= link_to "New user plan course", new_user_plan_course_user_path %>
