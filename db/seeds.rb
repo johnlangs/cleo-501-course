@@ -159,3 +159,6 @@ degree_plan2 = DegreePlan.create(name: 'BS in Computer Engineering')
 
 Major.create(name: "Computer Science")
 Major.create(name: "Computer Engineering")
+
+Subject.create(name: "Subject1", code: 1);
+Subject.create(name: "Subject2", code: 12);
