@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get "users/sign_out", to: "users/sessions#destroy", as: :destroy_user_session
   end
 
-  resources :users, except: [:show, :edit] do
+  resources :users, except: [ :show, :edit ] do
     member do
       get :create_profile
       patch :update_profile
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   # Custom route for courses by subject code
-  get 'courses/subject/:code', to: 'courses#by_subject', as: 'courses_by_subject'
+  get "courses/subject/:code", to: "courses#by_subject", as: "courses_by_subject"
 
   # Custom route for the currently logged-in user's profile
   get "user/profile", to: "users#show", as: "user_profile"

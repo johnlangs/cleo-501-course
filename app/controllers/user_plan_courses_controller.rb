@@ -12,9 +12,9 @@ class UserPlanCoursesController < ApplicationController
   # end
 
   # GET /user_plan_courses/new
-  def new
-    @user_plan_course = UserPlanCourse.new
-  end
+  # def new
+  #   @user_plan_course = UserPlanCourse.new
+  # end
 
   # GET /user_plan_courses/1/edit
   def edit
@@ -31,11 +31,11 @@ class UserPlanCoursesController < ApplicationController
 
   # POST /user_plan_courses or /user_plan_courses.json
   def create
-    @user_plan_course = UserPlanCourse.new(user_id: current_user.id, course_id: user_plan_course_params[:course_id])
+    @user_plan_course = UserPlanCourse.new(user_id: current_user.id, course_id: user_plan_course_params[:course_id], has_taken: user_plan_course_params[:has_taken])
 
     respond_to do |format|
       if @user_plan_course.save
-        format.html { redirect_to user_plan_course_url(@user_plan_course), notice: "User plan course was successfully created." }
+        format.html { redirect_to user_plan_path, notice: "User plan course was successfully created." }
         format.json { render :show, status: :created, location: @user_plan_course }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class UserPlanCoursesController < ApplicationController
   def update
     respond_to do |format|
       if @user_plan_course.update(user_plan_course_params)
-        format.html { redirect_to user_plan_course_url(@user_plan_course), notice: "User plan course was successfully updated." }
+        format.html { redirect_to user_plan_path, notice: "User plan course was successfully updated." }
         format.json { render :show, status: :ok, location: @user_plan_course }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,7 +62,7 @@ class UserPlanCoursesController < ApplicationController
     @user_plan_course.destroy!
 
     respond_to do |format|
-      format.html { redirect_to user_plan_courses_url, notice: "User plan course was successfully destroyed." }
+      format.html { redirect_to user_plan_path, notice: "User plan course was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -70,7 +70,7 @@ class UserPlanCoursesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_plan_course
-      @user_plan_course = UserPlanCourse.find(params[:id])
+      @user_plan_course = UserPlanCourse.find_by(id: params[:id], user_id: current_user.id)
     end
 
     # Only allow a list of trusted parameters through.

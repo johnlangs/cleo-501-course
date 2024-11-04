@@ -21,6 +21,11 @@
   </div>
 
   <div>
+    <%= form.label :has_taken, style: "display: block" %>
+    <%= form.check_box :has_taken, prompt: 'Have you taken this course?' %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
