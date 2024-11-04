@@ -6,12 +6,20 @@
 
 <h1 class="heading">Courses by Subject</h1>
 
-<ul>
-  <% @subjects.each do |subject| %>
-    <li>
-      <%= link_to subject.code, courses_by_subject_path(subject.code) %>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @subjects.each do |subject| %>
+      <div class="col mb-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to subject.code, courses_by_subject_path(subject.code), class: "stretched-link" %>
+            </h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to "New Course", new_course_path %>
