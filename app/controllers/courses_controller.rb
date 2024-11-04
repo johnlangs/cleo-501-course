@@ -1,12 +1,24 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :set_course, only: %i[show edit update destroy]
 
-  # GET /courses or /courses.json
+  # GET /courses
   def index
-    @courses = Course.includes(:subject).order(:subject_id, :code)
+    @subjects = Subject.order(:code)
   end
 
-  # GET /courses/1 or /courses/1.json
+  # GET /courses/subject/:code
+  def by_subject
+    @subject = Subject.find_by(code: params[:code])
+
+    if @subject
+      @courses = @subject.courses.includes(:subject).order(:code)
+    else
+      flash[:alert] = "Subject not found."
+      redirect_to courses_path
+    end
+  end
+
+  # GET /courses/1
   def show
   end
 
@@ -19,7 +31,7 @@ class CoursesController < ApplicationController
   def edit
   end
 
-  # POST /courses or /courses.json
+  # POST /courses
   def create
     @course = Course.new(course_params)
 
@@ -34,7 +46,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/1 or /courses/1.json
+  # PATCH/PUT /courses/1
   def update
     respond_to do |format|
       if @course.update(course_params)
@@ -47,7 +59,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1 or /courses/1.json
+  # DELETE /courses/1
   def destroy
     @course.destroy!
 
@@ -58,13 +70,14 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.includes(:subject, :course_prerequisites, :prerequisites).find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:name, :subject_id, :credits, :code)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.includes(:subject, :course_prerequisites, :prerequisites).find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def course_params
+    params.require(:course).permit(:name, :subject_id, :credits, :code)
+  end
 end
