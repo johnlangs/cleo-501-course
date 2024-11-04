@@ -2,13 +2,14 @@ class UserPlanCoursesController < ApplicationController
   before_action :set_user_plan_course, only: %i[ show edit update destroy ]
 
   # GET /user_plan_courses or /user_plan_courses.json
-  def index
-    @user_plan_courses = UserPlanCourse.includes(:course, :user).all
-  end
+  # def index
+  #   @user_plan_courses = UserPlanCourse.includes(:course, :user).all
+  # end
 
-  # GET /user_plan_courses/1 or /user_plan_courses/1.json
-  def show
-  end
+  # Remove individual show action as it exposes user data
+  # # GET /user_plan_courses/1 or /user_plan_courses/1.json
+  # def show
+  # end
 
   # GET /user_plan_courses/new
   def new
@@ -74,6 +75,6 @@ class UserPlanCoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_plan_course_params
-      params.fetch(:user_plan_course, {}).permit(:user_id, :course_id)
+      params.fetch(:user_plan_course, {}).permit(:user_id, :course_id, :has_taken)
     end
 end
