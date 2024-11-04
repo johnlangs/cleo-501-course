@@ -1,54 +1,25 @@
 <link rel="stylesheet" href="assets/stylesheets/application.css">
 
-<p style="color: green"><%= notice %></p> <% content_for :title, "Courses" %>
+<p style="color: green"><%= notice %></p>
 
-<h1 class="heading">Courses</h1>
+<% content_for :title, "Courses by Subject" %>
 
-<div id="courses">
-  
-  <!-- This is the card grid view, sorted by subject -->
-  <div class="row row-cols-1 row-cols-md-3">
-    <% @courses.each do |course| %>
-        <div class="col mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to course.name, course %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= course.subject.code %> <%=course.code%></h6>
-          <p class="card-text"><%= course.credits %> credit hours</p>
+<h1 class="heading">Courses by Subject</h1>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @subjects.each do |subject| %>
+      <div class="col mb-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to subject.code, courses_by_subject_path(subject.code), class: "stretched-link" %>
+            </h5>
+          </div>
         </div>
       </div>
-        </div>
     <% end %>
   </div>
-
-
-  <!--<table>-->
-  <!---->
-  <!--  <tr>-->
-  <!--    <td> Id </td>-->
-  <!--    <td> Name </td>-->
-  <!--    <td> Subject </td>-->
-  <!--    <td> Credits </td>-->
-  <!--  </tr>-->
-  <!---->
-  <!--  <% @courses.each do |course| %>-->
-  <!--    <tr>-->
-  <!--      <td>-->
-  <!--        <%= course.id %>-->
-  <!--      </td>-->
-  <!--      <td>-->
-  <!--        <%= link_to course.name, course %>-->
-  <!--      </td>-->
-  <!--      <td>-->
-  <!--        <%= link_to course.subject.name, course.subject %>-->
-  <!--      </td>-->
-  <!--      <td>-->
-  <!--        <%= course.credits %>-->
-  <!--      </td>-->
-  <!--    </tr>-->
-  <!--  <% end %>-->
-
-  <!--</table>-->
 </div>
 
-<%= link_to "New course", new_course_path %>
+<%= link_to "New Course", new_course_path %>
