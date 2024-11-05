@@ -18,6 +18,9 @@ class UserPlanCoursesController < ApplicationController
 
   # GET /user_plan_courses/1/edit
   def edit
+    sems = semesters_until(current_user.graduation_semester, current_user.graduation_year, 8)
+
+    @semesters = sems
   end
 
   def user
@@ -26,12 +29,21 @@ class UserPlanCoursesController < ApplicationController
 
   # make new user_plan_course with user_id = current_user.id
   def user_new
+    sems = semesters_until(current_user.graduation_semester, current_user.graduation_year, 8)
+
+    @semesters = sems
     @user_plan_course = UserPlanCourse.new
+  end
+
+  def user_plan_create_or_reset
+    UserPlanCourse.where(user_id: current_user.id).destroy_all
+    create_user_plan
+    redirect_to user_plan_path
   end
 
   # POST /user_plan_courses or /user_plan_courses.json
   def create
-    @user_plan_course = UserPlanCourse.new(user_id: current_user.id, course_id: user_plan_course_params[:course_id], has_taken: user_plan_course_params[:has_taken])
+    @user_plan_course = UserPlanCourse.new(user_id: current_user.id, course_id: user_plan_course_params[:course_id], has_taken: user_plan_course_params[:has_taken], semester: user_plan_course_params[:semester])
 
     respond_to do |format|
       if @user_plan_course.save
@@ -68,6 +80,14 @@ class UserPlanCoursesController < ApplicationController
   end
 
   private
+    def create_user_plan
+      i = 0
+      RequirementCourse.joins(:course).order("courses.code ASC").each do |req_course|
+        i += 1
+        UserPlanCourse.create(user: current_user, course: req_course.course, has_taken: false, semester: i%10)
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user_plan_course
       @user_plan_course = UserPlanCourse.find_by(id: params[:id], user_id: current_user.id)
@@ -75,6 +95,27 @@ class UserPlanCoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_plan_course_params
-      params.fetch(:user_plan_course, {}).permit(:user_id, :course_id, :has_taken)
+      params.fetch(:user_plan_course, {}).permit(:user_id, :course_id, :has_taken, :semester)
+    end
+
+    def semesters_until(graduation_semester, graduation_year, count)
+      semesters = []
+      semester = graduation_semester
+      year = graduation_year
+
+      count.times do |i|
+        # Add the current semester/year to the list of semesters with an index
+        semesters << [ "#{semester} #{year}", i ]
+
+        # Toggle between "Spring" and "Fall" and adjust the year as needed
+        if semester == "Spring"
+          semester = "Fall"
+          year -= 1
+        else
+          semester = "Spring"
+        end
+      end
+
+      semesters
     end
 end

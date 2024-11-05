@@ -1,4 +1,4 @@
-# system("python3 main.py")
+system("python3 main.py")
 
 Major.create(name: "Computer Science")
 Major.create(name: "Computer Engineering")

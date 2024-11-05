@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  after_create :create_user_plan
-
   # to be uncommented when Major entity is pushed
   # has_one :major  #  scope limitation (no double majors)
   has_many :user_plan_courses
@@ -25,11 +23,5 @@ class User < ApplicationRecord
   # end
 
   private
-    def create_user_plan
-      RequirementCourse.all.each do |req_course|
-        UserPlanCourse.create(user: self, course: req_course.course)
-      end
-    end
-
   # validates :email, :password, :isAdmin, presence: true
 end

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "user/profile/edit", to: "users#edit", as: "edit_user_profile"
   get "user/plan", to: "user_plan_courses#user", as: "user_plan"
   get "user/plan/new", to: "user_plan_courses#user_new", as: "new_user_plan_course_user"
+  post "user/plan/create_or_reset", to: "user_plan_courses#user_plan_create_or_reset", as: "user_plan_create_or_reset"
   patch "user/profile", to: "users#update"
 
   root "dashboards#show"

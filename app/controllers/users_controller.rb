@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        create_user_plan
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
 
@@ -89,5 +90,13 @@ class UsersController < ApplicationController
     # only allow major to change in during user creation
     def user_params_creation
       params.require(:user).permit(:major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
+    end
+
+    def create_user_plan
+      i = 0
+      RequirementCourse.all.each do |req_course|
+        i += 1
+        UserPlanCourse.create(user_id: self, course: req_course.course, has_taken: false, semester: i%4)
+      end
     end
 end
