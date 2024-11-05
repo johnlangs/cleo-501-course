@@ -10,7 +10,7 @@
   <% @subjects.each do |subject| %>
     <%= render subject %>
     <p>
-      <%= link_to "Show this subject", subject %>
+      <%= link_to "Show this subject", subject, class: "showButton" %>
     </p>
   <% end %>
 </div>

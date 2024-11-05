@@ -74,6 +74,10 @@ button {
    margin: 0.5rem;
 }
 
+.showButton {
+   margin: 0.5rem;
+}
+
 button:hover {
    background-color: #005DB9; /* primary color darkened by 10% */
 }
@@ -155,6 +159,10 @@ button:hover {
    text-align: center;
    align-items: center;
    justify-content: center;
+}
+
+div {
+   margin: 0.5rem;
 }
 
 

@@ -12,7 +12,8 @@
   <% @degree_plans.each do |degree_plan| %>
     <%= render degree_plan %>
     <p>
-      <%= link_to "Show this degree plan", degree_plan %>
+      <%= link_to "Show this degree plan", degree_plan, class: "showButton" %>
+      <br>
     </p>
   <% end %>
 </div>
