@@ -1,19 +1,24 @@
 <div id="<%= dom_id subject %>">
-  <p>
-    <strong>ID:</strong>
-    <%= subject.id %>
-  </p>
-  <p>
-    <strong>Name:</strong>
-    <%= subject.name %>
-  </p>
-  <p>
-    <strong>Code:</strong>
-    <%= subject.code %>
-  </p>
-  <strong>Courses:</strong>
-    <% subject.courses.each do |course| %>
-      <br/>
-      <%= link_to course.name, course %>
-    <% end %>
+  <table>
+    <tr>
+      <th>ID:</th>
+      <td><%= subject.id %></td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td><%= subject.name %></td>
+    </tr>
+    <tr>
+      <th>Code:</th>
+      <td><%= subject.code %></td>
+    </tr>
+    <tr>
+      <th>Courses:</th>
+      <td>
+        <% subject.courses.each do |course| %>
+          <%= link_to course.name, course %><br/>
+        <% end %>
+      </td>
+    </tr>
+  </table>
 </div>

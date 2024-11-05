@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @major = Major.find(current_user.major_id).name
+    @preference = Subject.find(current_user.preference_id).name
   end
 
   # GET /users/new
@@ -19,6 +21,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @majors = Major.all.pluck(:name, :id)
+    @subjects = Subject.all.pluck(:name, :id)
   end
 
   # POST /users or /users.json
@@ -27,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        create_user_plan
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
 
@@ -58,7 +63,8 @@ class UsersController < ApplicationController
 
   def create_profile
     @user = current_user
-    @majors = [ "Computer Science", "Computer Engineering" ]
+    @majors = Major.all.pluck(:name, :id)
+    @subjects = Subject.all.pluck(:name, :id)
   end
 
   def update_profile
@@ -78,11 +84,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :full_name, :major)
+      params.require(:user).permit(:email, :full_name, :major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
     end
 
     # only allow major to change in during user creation
     def user_params_creation
-      params.require(:user).permit(:major)
+      params.require(:user).permit(:major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
     end
 end
