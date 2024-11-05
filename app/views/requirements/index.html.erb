@@ -6,6 +6,8 @@
 
 <h1 class="heading">Requirements</h1>
 
+<%= link_to "New requirement", new_requirement_path, class: "newButton" %>
+
 <div id="requirements">
   <% @requirements.each do |requirement| %>
     <%= render requirement %>
@@ -15,4 +17,3 @@
   <% end %>
 </div>
 
-<%= link_to "New requirement", new_requirement_path %>

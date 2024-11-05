@@ -6,6 +6,8 @@
 
 <h1 class="heading">Users</h1>
 
+<%= link_to "New user", new_user_path, class: "newButton" %>
+
 <div id="users">
   <% @users.each do |user| %>
     <%= render user %>
@@ -15,4 +17,3 @@
   <% end %>
 </div>
 
-<%= link_to "New user", new_user_path %>
