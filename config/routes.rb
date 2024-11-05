@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   resources :emails
   resources :user_interests
 
-  # root 'users#index'
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -21,7 +19,6 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"
@@ -38,11 +35,15 @@ Rails.application.routes.draw do
     end
   end
 
+  # Custom route for courses by subject code
+  get "courses/subject/:code", to: "courses#by_subject", as: "courses_by_subject"
+
   # Custom route for the currently logged-in user's profile
   get "user/profile", to: "users#show", as: "user_profile"
   get "user/profile/edit", to: "users#edit", as: "edit_user_profile"
   get "user/plan", to: "user_plan_courses#user", as: "user_plan"
   get "user/plan/new", to: "user_plan_courses#user_new", as: "new_user_plan_course_user"
+  post "user/plan/create_or_reset", to: "user_plan_courses#user_plan_create_or_reset", as: "user_plan_create_or_reset"
   patch "user/profile", to: "users#update"
 
   root "dashboards#show"

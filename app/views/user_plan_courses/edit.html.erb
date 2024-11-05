@@ -4,11 +4,43 @@
 
 <h1 class="heading">Editing user plan course</h1>
 
-<%= render "form", user_plan_course: @user_plan_course %>
+<div class="d-flex justify-content-center mb-3">
+<%= form_with(model: @user_plan_course) do |form| %>
+  <% if @user_plan_course.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@user_plan_course.errors.count, "error") %> prohibited this user_plan_course from being saved:</h2>
+
+      <ul>
+        <% @user_plan_course.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :course_id, style: "display: block" %>
+    <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :name), prompt: 'Select a course' %>
+  </div>
+
+  <div>
+    <%= form.label :has_taken, style: "display: block" %>
+    <%= form.check_box :has_taken, prompt: 'Have you taken this course?' %>
+  </div>
+
+  <div>
+    <%= form.label :semester, style: "display: block" %>
+    <%= form.select :semester, @semesters, prompt: 'Select a semester' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
 
 <br>
 
-<div>
-  <%= link_to "Show this user plan course", @user_plan_course %> |
-  <%= link_to "Back to user plan courses", user_plan_courses_path %>
+<div class="d-flex justify-content-center">
+  <%= link_to "Back to user plan courses", user_plan_path %>
 </div>

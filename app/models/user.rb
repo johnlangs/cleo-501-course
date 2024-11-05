@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-  after_create :create_user_plan
-
   # to be uncommented when Major entity is pushed
   # has_one :major  #  scope limitation (no double majors)
   has_many :user_plan_courses
+  after_create :create_user_plan
 
   devise :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
@@ -17,11 +16,12 @@ class User < ApplicationRecord
   end
 
   private
-    def create_user_plan
-      RequirementCourse.all.each do |req_course|
-        UserPlanCourse.create(user: self, course: req_course.course)
-      end
-    end
-
   # validates :email, :password, :isAdmin, presence: true
+  def create_user_plan
+    i = 0
+    RequirementCourse.joins(:course).order("courses.code ASC").each do |req_course|
+      i += 1
+      UserPlanCourse.create(user: self, course: req_course.course, has_taken: false, semester: i%10)
+    end
+  end
 end

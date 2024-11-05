@@ -2,10 +2,20 @@
 
 <% content_for :title, "User plan courses" %>
 
+<div class="d-flex justify-content-center">
 <h1>User plan courses</h1>
+</div>
 
-<div id="user_plan_courses">
-  <div class="row row-cols-1 row-cols-md-3">
+<div class="d-flex justify-content-center mb-2">
+  <%= button_to "Reset plan", user_plan_create_or_reset_path, method: :post, data: { turbo_confirm: "Are you sure?" }, class: "delete" %>
+</div>
+
+<div class="d-flex justify-content-center mb-3">
+<%= button_to "Add a course", new_user_plan_course_user_path, method: :get %>
+</div>
+
+<div id="user_plan_courses" class="">
+  <div class="row row-cols-1 row-cols-md-3 mx-2">
     <% @user_plan_courses.each do |upc| %>
         <div class="col mb-4">
         <div class="card">
@@ -13,9 +23,21 @@
             <h5 class="card-title"><%= link_to upc.course.name, upc.course %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= upc.course.subject.code %> <%=upc.course.code%></h6>
             <p class="card-text"><%= upc.course.credits %> credit hours</p>
+            <% if upc.has_taken %>
+              <p class="card-text">You have taken this course</p>
+            <% else %>
+              <p class="card-text">You have not taken this course</p>
+            <% end %>
+            <% sem = convert_index_to_semester_and_year(upc.semester) %>
+            <% term = sem[0] %>
+            <% year = sem[1] %>
+            <p class="card-text"> Planned Semester: <%= term %> <%= year %></p>
           </div>
-          <div>
-            <%= button_to "Delete this Planned Course", upc, method: :delete %>
+          <div class="container">
+          <div class="row">
+            <%= button_to "Edit this course", edit_user_plan_course_path(upc), method: :get, class: "col-md"%>
+            <%= button_to "Remove this course", upc, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "delete col-md mb-1" %>
+          </div>
           </div>
         </div>
       </div>
@@ -23,4 +45,3 @@
   </div>
 </div>
 
-<%= link_to "New user plan course", new_user_plan_course_user_path %>

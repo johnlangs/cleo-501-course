@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        create_user_plan
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
 
