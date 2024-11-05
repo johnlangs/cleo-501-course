@@ -1,5 +1,7 @@
 module Users
   class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    ADMIN_EMAILS = ['mgorena@tamu.edu'].freeze
+
     def google_oauth2
       user = User.from_google(**from_google_params)
 
@@ -34,7 +36,8 @@ module Users
       @from_google_params ||= {
         uid: auth.uid,
         email: auth.info.email,
-        full_name: auth.info.name
+        full_name: auth.info.name,
+        isAdmin: ADMIN_EMAILS.include?(auth.info.email) ? true : false
       }
     end
 

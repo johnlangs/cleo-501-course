@@ -1,35 +1,27 @@
 class User < ApplicationRecord
-  after_create :create_user_plan
-
   # to be uncommented when Major entity is pushed
   # has_one :major  #  scope limitation (no double majors)
   has_many :user_plan_courses
+  after_create :create_user_plan
 
   devise :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   # Creates a user from Google OAuth data or returns an existing one
-  def self.from_google(email:, full_name:, uid:)
+  def self.from_google(email:, full_name:, uid:, isAdmin:)
     find_or_create_by(email: email) do |user|
       user.uid = uid
       user.full_name = full_name
-      # Set a dummy or default password if your model requires one
-      # user.password = Devise.friendly_token[0, 20]
+      user.isAdmin = isAdmin
     end
   end
 
-  # def self.from_omniauth(auth)
-  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  #     user.email = auth.info.email
-  #     user.full_name = auth.info.name
-  #   end
-  # end
-
   private
-    def create_user_plan
-      RequirementCourse.all.each do |req_course|
-        UserPlanCourse.create(user: self, course: req_course.course)
-      end
-    end
-
   # validates :email, :password, :isAdmin, presence: true
+  def create_user_plan
+    i = 0
+    RequirementCourse.joins(:course).order("courses.code ASC").each do |req_course|
+      i += 1
+      UserPlanCourse.create(user: self, course: req_course.course, has_taken: false, semester: i%10)
+    end
+  end
 end

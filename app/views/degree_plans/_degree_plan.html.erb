@@ -1,18 +1,22 @@
 <link rel="stylesheet" href="assets/stylesheets/application.css">
 
 <div id="<%= dom_id degree_plan %>">
-  <p>
-    <strong>Name:</strong>
-    <%= degree_plan.name %>
-  </p>
-  <p>
-    <strong>Requirements:</strong>
-    <% degree_plan.requirements.each do |requirement| %>
-      <br/>
-      <%= link_to requirement.name, requirement %>
-    <% end %>
-  </p>
-  <p>
-    <%= link_to 'Make new requirement', new_requirement_path %>
-  </p>
+  <table>
+    <tr>
+    <%# <th>Name:</th> %>
+    <th style="text-align: center;"><%= degree_plan.name %></th>
+  </tr>
+  <tr>
+    <%# <th>Requirements:</th> %>
+
+      <table>
+        <% degree_plan.requirements.each do |requirement| %>
+          <tr>
+            <td><%= link_to requirement.name, requirement %></td>
+          </tr>
+        <% end %>
+      </table>
+      </tr>
+  </table>
+    <%= link_to 'Make new requirement', new_requirement_path, class: "newButton" %>
 </div>

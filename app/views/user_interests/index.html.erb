@@ -6,6 +6,8 @@
 
 <h1 class="heading">User interests</h1>
 
+<%= link_to "New user interest", new_user_interest_path, class: "newButton" %>
+
 <div id="user_interests">
   <% @user_interests.each do |user_interest| %>
     <%= render user_interest %>
@@ -15,4 +17,3 @@
   <% end %>
 </div>
 
-<%= link_to "New user interest", new_user_interest_path %>
