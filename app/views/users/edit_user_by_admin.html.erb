@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="assets/stylesheets/application.css">
+
+<div class="container text-center">
+  <h1 class="heading mb-4">Edit User</h1>
+
+  <div class="form-container d-flex justify-content-center">
+    <%= form_for @user, url: update_user_by_admin_path(@user), method: :patch do |f| %>
+      <div>
+        <div class="field">
+          <%= f.label :major_id, "Major" %><br>
+          <%= f.select :major_id, @majors, { include_blank: 'Select a Major' }, { required: true } %>
+        </div>
+        <div class="field">
+          <%= f.label :preference_id, "Preferred Subject" %><br>
+          <%= f.select :preference_id, @subjects, { include_blank: 'Select a Subject' }, { required: true } %>
+        </div>
+        <div class="field">
+          <%= f.label :max_class_hours, "Max Class Hours" %><br>
+          <%= f.select :max_class_hours, (12..24).to_a, { include_blank: 'Select Hours' }, { required: true } %>
+        </div>
+        <div class="field">
+          <%= f.label :graduation_semester, "Graduation Semester" %><br>
+          <%= f.select :graduation_semester, ["Fall", "Spring"], { include_blank: 'Select Semester' }, { required: true } %>
+        </div>
+        <div class="field">
+          <%= f.label :graduation_year, "Graduation Year" %><br>
+          <%= f.select :graduation_year, ((Time.now.year)..(Time.now.year + 5)).to_a, { include_blank: 'Select Year' }, { required: true } %>
+        </div>
+        <div class="field">
+          <%= f.label :isAdmin, "Admin" %><br>
+          <%= f.check_box :isAdmin %> Grant admin privileges
+        </div>
+        <div class="field">
+          <%= f.label :is_active, "Account Active" %><br>
+          <%= f.check_box :is_active %>
+        </div>
+        <div class="actions mt-3">
+          <%= f.submit "Update User", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

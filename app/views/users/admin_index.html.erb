@@ -1,0 +1,42 @@
+<h1>Admin - Manage Users</h1>
+
+<%= form_with url: admin_users_path, method: :get, local: true do |form| %>
+    <div class="search-bar">
+      <%= form.text_field :search, value: params[:search], placeholder: "Enter name" %>
+      <%= form.submit "Search By User Name", class: "btn btn-primary" %>
+
+    </div>
+  <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Major</th>
+      <th>Preference</th>
+      <th>Admin</th>
+      <th>Account Active</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.major_id.present? ? Major.find(user.major_id).name : "N/A" %></td>
+        <td><%= user.preference_id.present? ? Subject.find(user.preference_id).name : "N/A" %></td>
+        <td><%= user.isAdmin ? "Yes" : "No" %></td>
+        <td><%= user.is_active ? "Yes" : "No" %></td>
+        <td>
+          <%= link_to "Edit", edit_user_by_admin_path(user), class: "btn btn-sm btn-primary" %>
+        </td>
+        <td>
+          <%= button_to "Delete", user_path(user), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
