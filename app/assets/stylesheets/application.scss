@@ -245,3 +245,22 @@ tr:nth-child(even) td {
        grid-template-columns: repeat(2, 1fr);
    }
 }
+
+.search-bar {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 20px 0;
+ }
+ 
+ .search-bar input[type="text"] {
+   padding: 5px;
+   font-size: 14px;
+   margin-right: 10px;
+ }
+ 
+ .search-bar input[type="submit"] {
+   padding: 5px 10px;
+   font-size: 14px;
+   cursor: pointer;
+ }

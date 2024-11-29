@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_user, only: [ :show, :edit, :update ]
   before_action :authenticate_user!
-
+  before_action :require_admin, only: [:admin_index]
 
   # GET /users or /users.json
   def index
@@ -53,11 +53,12 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+    user = User.find(params[:id])
+    if current_user.isAdmin
+      user.destroy!
+      redirect_to admin_users_path, notice: "User deleted successfully."
+    else
+      redirect_to root_path, alert: "You are not authorized to delete users."
     end
   end
 
@@ -76,6 +77,38 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin_index
+    if params[:search].present?
+      @users = User.where("full_name ILIKE ?", "%#{params[:search]}%")
+    else
+      @users = User.all
+    end
+  end
+
+  # GET /admin/users/:id/edit
+  def edit_user_by_admin
+    if current_user.isAdmin
+      @user = User.find(params[:id])
+      @majors = Major.all.pluck(:name, :id)
+      @subjects = Subject.all.pluck(:name, :id)
+    else
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
+  end
+
+  def update_user_by_admin
+    if current_user.isAdmin
+      @user = User.find(params[:id])
+      if @user.update(user_params)
+        redirect_to admin_users_path, notice: "User updated successfully."
+      else
+        render :edit_user_by_admin
+      end
+    else
+      redirect_to root_path, alert: "You are not authorized to perform this action."
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -84,11 +117,17 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :full_name, :major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
+      params.require(:user).permit(:email, :full_name, :major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year, :is_active)
     end
 
     # only allow major to change in during user creation
     def user_params_creation
       params.require(:user).permit(:major_id, :preference_id, :max_class_hours, :graduation_semester, :graduation_year)
+    end
+
+    def require_admin
+      unless current_user.isAdmin
+        redirect_to root_path, alert: "You are not authorized to access this page."
+      end
     end
 end

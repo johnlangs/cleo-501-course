@@ -41,10 +41,17 @@ Rails.application.routes.draw do
   # Custom route for the currently logged-in user's profile
   get "user/profile", to: "users#show", as: "user_profile"
   get "user/profile/edit", to: "users#edit", as: "edit_user_profile"
+  patch "user/profile", to: "users#update"
+
+  # admin routes
+  get "admin/users", to: "users#admin_index", as: "admin_users"
+  get "admin/users/:id/edit", to: "users#edit_user_by_admin", as: "edit_user_by_admin"
+  patch "admin/users/:id", to: "users#update_user_by_admin", as: "update_user_by_admin"
+
   get "user/plan", to: "user_plan_courses#user", as: "user_plan"
   get "user/plan/new", to: "user_plan_courses#user_new", as: "new_user_plan_course_user"
   post "user/plan/create_or_reset", to: "user_plan_courses#user_plan_create_or_reset", as: "user_plan_create_or_reset"
-  patch "user/profile", to: "users#update"
+  
 
   root "dashboards#show"
 end
